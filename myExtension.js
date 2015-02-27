@@ -7,7 +7,6 @@ var runCode = function() {
     var currentEmail = gmail.get.email_data(id);
     console.log("current email data: " + JSON.stringify(gmail.get.email_data(id)));
     var peopleInvolved = currentEmail["people_involved"];
-    debugger;
     peopleInvolved.forEach(function(elem) {
       console.log("Person involved...");
       console.log(elem);
@@ -19,12 +18,12 @@ var runCode = function() {
   }
 
   function insertMemberDetails(data) {
+
   }
 
   function showMemberData(emailAddr) {
-    var memberDetails = $('body').append('<div class="member-details" style="position: fixed; bottom: 0; right: 0; width: 300px; height: 400px; z-index: 999;"></div>');
     console.log("#getting member details: " + emailAddr);
-    $.get('http://analytics.apps.38degrees.org.uk/sidebar/' + emailAddr, insertMemberDetails(data));
+    var memberDetails = $('body').append('<iframe src="http://analytics.apps.38degrees.org.uk/sidebar/' + emailAddr + '" class="member-details" width="300" height="400" style="position: fixed; bottom: 0; right: 0; z-index: 999;"></div>');
   }
 
   gmail.observe.after('open_email', function(id, url, body) {
