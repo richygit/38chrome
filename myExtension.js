@@ -23,7 +23,7 @@ var runCode = function() {
 
   function showMemberData(emailAddr) {
     console.log("#getting member details: " + emailAddr);
-    var memberDetails = $('body').append('<iframe src="http://analytics.apps.38degrees.org.uk/sidebar/' + emailAddr + '" class="member-details" width="300" height="400" style="position: fixed; bottom: 0; right: 0; z-index: 999;"></div>');
+    var memberDetails = $('body').append('<iframe src="http://analytics.apps.38degrees.org.uk/sidebar/' + emailAddr + '" class="member-details" width="300" height="400" style="position: fixed; bottom: 0; right: 0; z-index: 999;"></iframe>');
   }
 
   gmail.observe.after('open_email', function(id, url, body) {
