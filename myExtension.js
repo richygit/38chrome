@@ -2,19 +2,40 @@
 var runCode = function() {
   var gmail = Gmail();
 
-  gmail.observe.after('open_email', function(id, url, body) {
-    console.log('#open email event', id);
+  function getEmailAddr(id) {
+    var email = null;
     var currentEmail = gmail.get.email_data(id);
     console.log("current email data: " + JSON.stringify(gmail.get.email_data(id)));
     var peopleInvolved = currentEmail["people_involved"];
     debugger;
-    var email = null;
     peopleInvolved.forEach(function(elem) {
+      console.log("Person involved...");
       console.log(elem);
       if(elem[1].indexOf('@38degrees.org.uk') < 0) {
         email = elem[1];
       }
     });
+    return email;
+  }
+
+  function insertMemberDetails(data) {
+  }
+
+  function showMemberData(emailAddr) {
+    var memberDetails = $('body').append('<div class="member-details" style="position: fixed; bottom: 0; right: 0; width: 300px; height: 400px; z-index: 999;"></div>');
+    console.log("#getting member details: " + emailAddr);
+    $.get('http://analytics.apps.38degrees.org.uk/sidebar/' + emailAddr, insertMemberDetails(data));
+  }
+
+  gmail.observe.after('open_email', function(id, url, body) {
+    console.log('#open email event', id);
+    var emailAddr = getEmailAddr(id);
+
+    if(emailAddr !== null) {
+      showMemberData(emailAddr);
+    } else {
+      console.log("#No email found.");
+    }
   });
 
 }
