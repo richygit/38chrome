@@ -2,12 +2,12 @@
 var runCode = function() {
   var gmail = Gmail();
 
-  gmail.observe.on('open_email', function(id, url, body) {
+  gmail.observe.after('open_email', function(id, url, body) {
     console.log('#open email event', id);
     var currentEmail = gmail.get.email_data();
-    var peopleInvolved = currentEmail["people_involved"];
     console.log("current email id: " + gmail.get.email_id());
     console.log("current email data: " + JSON.stringify(gmail.get.email_data()));
+    var peopleInvolved = currentEmail["people_involved"];
   });
 
 }
