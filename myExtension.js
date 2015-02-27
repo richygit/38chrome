@@ -4,10 +4,17 @@ var runCode = function() {
 
   gmail.observe.after('open_email', function(id, url, body) {
     console.log('#open email event', id);
-    var currentEmail = gmail.get.email_data();
-    console.log("current email id: " + gmail.get.email_id());
+    var currentEmail = gmail.get.email_data(id);
     console.log("current email data: " + JSON.stringify(gmail.get.email_data(id)));
     var peopleInvolved = currentEmail["people_involved"];
+    debugger;
+    var email = null;
+    peopleInvolved.forEach(function(elem) {
+      console.log(elem);
+      if(elem[1].indexOf('@38degrees.org.uk') < 0) {
+        email = elem[1];
+      }
+    });
   });
 
 }
