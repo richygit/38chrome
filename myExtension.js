@@ -4,7 +4,9 @@ var runCode = function() {
 
   gmail.observe.on('open_email', function(id, url, body) {
     console.log('#open email event', id);
-    console.log("current email: " + JSON.stringify(gmail.get.email_data(), null, 4));
+    var currentEmail = gmail.get.email_data();
+    var peopleInvolved = currentEmail["people_involved"];
+    console.log("current email: " + JSON.stringify(gmail.get.email_data()));
   });
 
 }
