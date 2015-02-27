@@ -6,7 +6,7 @@ var runCode = function() {
     console.log('#open email event', id);
     var currentEmail = gmail.get.email_data();
     var peopleInvolved = currentEmail["people_involved"];
-    console.log("current email: " + JSON.stringify(gmail.get.email_data()));
+    console.log("current email data: " + JSON.stringify(gmail.get.email_data()));
   });
 
 }
