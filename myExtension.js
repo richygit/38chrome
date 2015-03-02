@@ -39,7 +39,7 @@ var runCode = function() {
 
 // check if jquery is loaded and init
 var checkLoaded = function() {
-  if(window.jQuery) {
+  if(window.jQuery && window.Gmail) {
     $.fn.onAvailable = function(e) {
       var t = this.selector;
       var n = this;
