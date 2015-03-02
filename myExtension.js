@@ -24,19 +24,10 @@ var runCode = function() {
   }
 
   function getMemberDetails(emailAddr) {
-    var xhr = new XMLHttpRequest();
-    xhr.open("GET", "http://analytics.apps.38degrees.org.uk/sidebar/" + emailAddr, true);
-    xhr.onreadystatechange = function() {
-      if (xhr.readyState == 4) {
-        console.log("##loaded data: " + xhr.responseText);
-      }
-    }
-    xhr.send();
-
-    //$.get( "http://analytics.apps.38degrees.org.uk/sidebar/" + emailAddr, function( memberDetails ) {
-      //console.log("#loaded data: " + data);
-      //showMemberDetails(memberDetails);
-    //});
+    $.get( "http://analytics.apps.38degrees.org.uk/sidebar/" + emailAddr, function( memberDetails ) {
+      console.log("#loaded data: " + data);
+      showMemberDetails(memberDetails);
+    });
   }
 
   gmail.observe.after('open_email', function(id, url, body) {
