@@ -17,10 +17,17 @@ var runCode = function() {
     return email;
   }
 
-  function showMemberData(emailAddr) {
-    console.log("#getting member details: " + emailAddr);
+  function showMemberDetails(memberDetails) {
+    console.log("#showing member details: " + emailAddr);
     $('.member-details').remove();
-    var memberDetails = $('body').append('<iframe src="http://analytics.apps.38degrees.org.uk/sidebar/' + emailAddr + '" class="member-details" width="300" height="400" style="position: fixed; bottom: 0; right: 0; z-index: 999;"></iframe>');
+    $('body').append('<div>' + memberDetails + '</div>');
+  }
+
+  function getMemberDetails(emailAddr) {
+    $.get( "http://analytics.apps.38degrees.org.uk/sidebar/" + emailAddr, function( memberDetails ) {
+      console.log("#loaded data: " + data);
+      showMemberDetails(memberDetails);
+    });
   }
 
   gmail.observe.after('open_email', function(id, url, body) {
@@ -28,7 +35,7 @@ var runCode = function() {
     var emailAddr = getEmailAddr(id);
 
     if(emailAddr !== null) {
-      showMemberData(emailAddr);
+      getMemberDetails(emailAddr);
     } else {
       console.log("#No email found.");
     }
