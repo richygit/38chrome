@@ -17,12 +17,9 @@ var runCode = function() {
     return email;
   }
 
-  function insertMemberDetails(data) {
-
-  }
-
   function showMemberData(emailAddr) {
     console.log("#getting member details: " + emailAddr);
+    $('.member-details').remove();
     var memberDetails = $('body').append('<iframe src="http://analytics.apps.38degrees.org.uk/sidebar/' + emailAddr + '" class="member-details" width="300" height="400" style="position: fixed; bottom: 0; right: 0; z-index: 999;"></iframe>');
   }
 
