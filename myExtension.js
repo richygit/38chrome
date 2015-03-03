@@ -20,7 +20,11 @@ var runCode = function() {
   function showMemberData(emailAddr) {
     console.log("#getting member details: " + emailAddr);
     $('.member-details').remove();
-    var memberDetails = $('body').append('<iframe src="https://analytics.apps.38degrees.org.uk/sidebar/' + emailAddr + '" class="member-details" width="300" height="500" style="position: fixed; bottom: 0; right: 20px; z-index: 999;"></iframe>');
+    var memberDetails = $('body').append('<iframe src="https://analytics.apps.38degrees.org.uk/sidebar/' + emailAddr + '" class="member-details" width="300" height="500" style="position: fixed; bottom: 0; right: 20px; z-index: 990;"></iframe>');
+  }
+
+  function displayHideButton() {
+    var memberDetails = $('body').append('<div class="hide-button" style="position: fixed; bottom: 500px, right: 40px; z-index: 999;">X</div>');
   }
 
   gmail.observe.after('open_email', function(id, url, body) {
