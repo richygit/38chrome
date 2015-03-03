@@ -24,7 +24,8 @@ var runCode = function() {
   }
 
   function displayHideButton() {
-    $('body').append('<div class="hide-button" style="position: fixed; bottom: 500px, right: 40px; z-index: 999;">X</div>');
+    $('body').append('<div class="hide-button" style="position: fixed; z-index: 999; bottom: 460px; right: 39px; background-color: #ddd; text-align: center; padding: 10px 15px;cursor: pointer;">X</div>');
+    $('body').append("<script>$('.hide-button').click(function() {$('.member-details').hide();});</script>");
   }
 
   gmail.observe.after('open_email', function(id, url, body) {
