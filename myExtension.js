@@ -24,7 +24,7 @@ var runCode = function() {
   }
 
   function displayHideButton() {
-    var memberDetails = $('body').append('<div class="hide-button" style="position: fixed; bottom: 500px, right: 40px; z-index: 999;">X</div>');
+    $('body').append('<div class="hide-button" style="position: fixed; bottom: 500px, right: 40px; z-index: 999;">X</div>');
   }
 
   gmail.observe.after('open_email', function(id, url, body) {
@@ -33,6 +33,7 @@ var runCode = function() {
 
     if(emailAddr !== null) {
       showMemberData(emailAddr);
+      displayHideButton();
     } else {
       console.log("#No email found.");
     }
