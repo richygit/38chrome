@@ -35,7 +35,7 @@ var runCode = function(mode) {
     $('body').append("<script>$('.hide-button').click(function() {$('.member-details').hide(); $('.hide-button').hide(); });</script>");
   }
 
-  if(mode === 'gmail') {
+  if(model === 'gmail') {
     gmail.observe.after('open_email', function(id, url, body) {
       console.log('#open email event', id);
       var emailAddr = getEmailAddr(id);
