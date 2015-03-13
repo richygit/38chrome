@@ -1,12 +1,8 @@
 // gmail code
-var runCode = function(mode) {
+var runCode = function() {
   var gmail = Gmail();
 
-  function getNationBuilderEmailAddr(id) {
-    return $('a[href^="mailto:"]')[0];
-  }
-
-  function getGmailAddr(id) {
+  function getEmailAddr(id) {
     var email = null;
     var currentEmail = gmail.get.email_data(id);
     console.log("current email data: " + JSON.stringify(gmail.get.email_data(id)));
@@ -24,7 +20,7 @@ var runCode = function(mode) {
   function showMemberData(emailAddr) {
     console.log("#getting member details: " + emailAddr);
     $('.member-details').remove();
-    var memberDetails = $('body').append('<iframe src="https://analytics.38degrees.org.uk/sidebar/' + emailAddr + '" class="member-details" width="300" height="500" style="position: fixed; bottom: 0; right: 20px; z-index: 990;"></iframe>');
+    var memberDetails = $('body').append('<iframe src="https://analytics.apps.38degrees.org.uk/sidebar/' + emailAddr + '" class="member-details" width="300" height="500" style="position: fixed; bottom: 0; right: 20px; z-index: 990;"></iframe>');
   }
 
   function displayHideButton() {
@@ -32,23 +28,18 @@ var runCode = function(mode) {
     $('body').append("<script>$('.hide-button').click(function() {$('.member-details').hide(); $('.hide-button').hide(); });</script>");
   }
 
-  if(model === 'gmail') {
-    gmail.observe.after('open_email', function(id, url, body) {
-      console.log('#open email event', id);
-      var emailAddr = getEmailAddr(id);
+  gmail.observe.after('open_email', function(id, url, body) {
+    console.log('#open email event', id);
+    var emailAddr = getEmailAddr(id);
 
-      if(emailAddr !== null) {
-        showMemberData(emailAddr);
-        displayHideButton();
-      } else {
-        console.log("#No email found.");
-      }
-    });
-  } else {
-    var emailAddr = getNationBuilderEmail();
-    showMemberData(emailAddr);
-    displayHideButton();
-  }
+    if(emailAddr !== null) {
+      showMemberData(emailAddr);
+      displayHideButton();
+    } else {
+      console.log("#No email found.");
+    }
+  });
+
 }
 
 
@@ -70,11 +61,7 @@ var checkLoaded = function() {
     };
 
     // your code
-  if(document.URL.indexOf("https://mail.google.com/") == 0 ) {
-    runCode('gmail');
-  } else {
-    runCode('nationbuilder');
-  }
+    runCode();
 
   } else {
     setTimeout(checkLoaded, 100);
