@@ -1,6 +1,9 @@
 // gmail code
 var runCode = function(mode) {
-  var gmail = Gmail();
+  var gmail;
+  if(mode === 'gmail') {
+    gmail = Gmail();
+  }
 
   function getNationBuilderEmailAddr(id) {
     return $('a[href^="mailto:"]')[0];
