@@ -22,7 +22,7 @@ var runCode = function() {
   function showMemberData(emailAddr) {
     console.log("#getting member details: " + emailAddr);
     $('.member-details').remove();
-    var memberDetails = $('body').append('<iframe src="https://analytics.apps.38degrees.org.uk/sidebar/' + emailAddr + '" class="member-details" width="300" height="500" style="position: fixed; bottom: 0; right: 20px; z-index: 990;"></iframe>');
+    var memberDetails = $('body').append('<iframe src="https://analytics.38degrees.org.uk/sidebar/' + emailAddr + '" class="member-details" width="300" height="500" style="position: fixed; bottom: 0; right: 20px; z-index: 990;"></iframe>');
   }
 
   function displayHideButton() {
