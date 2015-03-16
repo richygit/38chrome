@@ -1,6 +1,8 @@
-// gmail code
 var runCode = function() {
-  var gmail = Gmail();
+  var gmail;
+  if(globalGmailMode) {
+    gmail = Gmail();
+  }
 
   function getEmailAddr(id) {
     var email = null;
@@ -28,24 +30,31 @@ var runCode = function() {
     $('body').append("<script>$('.hide-button').click(function() {$('.member-details').hide(); $('.hide-button').hide(); });</script>");
   }
 
-  gmail.observe.after('open_email', function(id, url, body) {
-    console.log('#open email event', id);
-    var emailAddr = getEmailAddr(id);
+  function getNationBuilderEmailAddress() {
+  }
 
-    if(emailAddr !== null) {
-      showMemberData(emailAddr);
-      displayHideButton();
-    } else {
-      console.log("#No email found.");
-    }
-  });
+  if(globalGmailMode) {
+    gmail.observe.after('open_email', function(id, url, body) {
+      console.log('#open email event', id);
+      var emailAddr = getEmailAddr(id);
 
+      if(emailAddr !== null) {
+        showMemberData(emailAddr);
+        displayHideButton();
+      } else {
+        console.log("#No email found.");
+      }
+    });
+  } else {
+    showMemberData(getNationBuilderEmailAddress());
+    displayHideButton();
+  }
 }
 
 
 // check if jquery is loaded and init
 var checkLoaded = function() {
-  if(window.jQuery && window.Gmail) {
+  if(window.jQuery && ( !globalGmailMode || window.Gmail) {
     $.fn.onAvailable = function(e) {
       var t = this.selector;
       var n = this;
@@ -68,4 +77,17 @@ var checkLoaded = function() {
   }
 }
 
+var globalGmailMode;
+
+function checkMode() {
+  if (document.URL.indexOf("https://38degrees.nationbuilder.com") === -1) {
+    globalGmailMode = true;
+    console.log("this is gmail");
+  } else {
+    globalGmailMode = false;
+    console.log("this is nationbiulder");
+  }
+}
+
+checkMode();
 checkLoaded();
