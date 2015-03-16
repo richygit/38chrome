@@ -31,6 +31,7 @@ var runCode = function() {
   }
 
   function getNationBuilderEmailAddress() {
+    return $('a[href^="mailto:"]').attr('href').substring(7);
   }
 
   if(globalGmailMode) {
@@ -54,7 +55,7 @@ var runCode = function() {
 
 // check if jquery is loaded and init
 var checkLoaded = function() {
-  if(window.jQuery && ( !globalGmailMode || window.Gmail) {
+  if(window.jQuery && ( !globalGmailMode || window.Gmail)) {
     $.fn.onAvailable = function(e) {
       var t = this.selector;
       var n = this;
