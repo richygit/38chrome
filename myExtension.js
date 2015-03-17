@@ -31,11 +31,16 @@ var runCode = function() {
 
   function addHideButtonBehaviour() {
     $('.hide-button').click(function() {
-      $('.member-details').hide(); $('.hide-button').hide(); 
+      $('.member-details').hide(); 
+      $('.hide-button').hide(); 
     });
   }
 
   function addMinButtonBehaviour() {
+    $('.min-button').click(function() {
+      $('.member-details').toggleClass("max");
+      $('.min-button').toggleClass("max");
+    });
   }
 
   function displayFrameButtons() {
