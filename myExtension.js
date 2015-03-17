@@ -26,24 +26,22 @@ var runCode = function() {
   function showMemberData(emailAddr) {
     console.log("#getting member details: " + emailAddr);
     $('.member-details').remove();
-    var memberDetails = $('body').append('<iframe src="https://analytics.38degrees.org.uk/sidebar/' + emailAddr + '" class="member-details" width="300" height="500"></iframe>');
+    var memberDetails = $('body').append('<iframe src="https://analytics.38degrees.org.uk/sidebar/' + emailAddr + '" class="member-details"></iframe>');
   }
 
   function addHideButtonBehaviour() {
     $('.hide-button').click(function() {
       $('.member-details').hide(); $('.hide-button').hide(); 
-      //TODO
     });
   }
 
   function addMinButtonBehaviour() {
-    //TODO
   }
 
   function displayFrameButtons() {
     $('body').append('<div class="hide-button">X</div>');
     addHideButtonBehaviour();
-    $('body').append('<div class="min-button">-</div>');
+    $('body').append('<div class="min-button">&ndash;</div>');
     addMinButtonBehaviour();
   }
 
