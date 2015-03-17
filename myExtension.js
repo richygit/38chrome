@@ -32,7 +32,8 @@ var runCode = function() {
   function addHideButtonBehaviour() {
     $('.hide-button').click(function() {
       $('.member-details').hide(); 
-      $('.hide-button').hide(); 
+      $('.hide-button').hide();
+      $('.min-button').hide();
     });
   }
 
@@ -40,6 +41,7 @@ var runCode = function() {
     $('.min-button').click(function() {
       $('.member-details').toggleClass("max");
       $('.min-button').toggleClass("max");
+      $('.hide-button').toggleClass("max")
     });
   }
 
