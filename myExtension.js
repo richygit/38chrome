@@ -58,6 +58,7 @@ var runCode = function() {
 
   if(globalGmailMode) {
     gmail.observe.after('open_email', function(id, url, body) {
+      $('.hide-button').click();
       console.log('#open email event', id);
       var emailAddr = getEmailAddr(id);
 
