@@ -26,12 +26,25 @@ var runCode = function() {
   function showMemberData(emailAddr) {
     console.log("#getting member details: " + emailAddr);
     $('.member-details').remove();
-    var memberDetails = $('body').append('<iframe src="https://analytics.38degrees.org.uk/sidebar/' + emailAddr + '" class="member-details" width="300" height="500" style="position: fixed; bottom: 0; right: 20px; z-index: 990;"></iframe>');
+    var memberDetails = $('body').append('<iframe src="https://analytics.38degrees.org.uk/sidebar/' + emailAddr + '" class="member-details" width="300" height="500"></iframe>');
   }
 
-  function displayHideButton() {
-    $('body').append('<div class="hide-button" style="position: fixed; z-index: 999; bottom: 460px; right: 39px; background-color: #ddd; text-align: center; padding: 10px 15px;cursor: pointer;">X</div>');
-    $('body').append("<script>$('.hide-button').click(function() {$('.member-details').hide(); $('.hide-button').hide(); });</script>");
+  function addHideButtonBehaviour() {
+    $('.hide-button').click(function() {
+      $('.member-details').hide(); $('.hide-button').hide(); 
+      //TODO
+    });
+  }
+
+  function addMinButtonBehaviour() {
+    //TODO
+  }
+
+  function displayFrameButtons() {
+    $('body').append('<div class="hide-button">X</div>');
+    addHideButtonBehaviour();
+    $('body').append('<div class="min-button">-</div>');
+    addMinButtonBehaviour();
   }
 
   function getNationBuilderEmailAddress() {
@@ -45,14 +58,14 @@ var runCode = function() {
 
       if(emailAddr !== null) {
         showMemberData(emailAddr);
-        displayHideButton();
+        displayFrameButtons();
       } else {
         console.log("#No email found.");
       }
     });
   } else {
     showMemberData(getNationBuilderEmailAddress());
-    displayHideButton();
+    displayFrameButtons();
   }
 }
 
