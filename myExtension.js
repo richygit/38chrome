@@ -2,6 +2,10 @@ var runCode = function() {
   var gmail;
   if(globalGmailMode) {
     gmail = Gmail();
+  } else {
+    if (document.URL === "https://38degrees.nationbuilder.com/admin/signups") {
+      return;
+    }
   }
 
   function getEmailAddr(id) {
